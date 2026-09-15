@@ -72,4 +72,17 @@ describe('CartPage', () => {
         expect(screen.getByText('Quantity: 2')).toBeInTheDocument();
         expect(screen.getByText('Quantity: 1')).toBeInTheDocument();
     });
+
+    it('Empty cart', () => {
+        renderWithCartContext({ ...mockCartContext, cartItems: [] });
+        
+        expect(screen.getByText(/your cart is empty/i)).toBeInTheDocument();
+    });
+
+    it('displays header and footer', () => {
+        renderWithCartContext();
+        
+        expect(screen.getByTestId('header')).toBeInTheDocument();
+        expect(screen.getByTestId('footer')).toBeInTheDocument();
+    });
 });
